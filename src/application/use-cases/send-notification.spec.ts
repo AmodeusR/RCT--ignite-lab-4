@@ -1,12 +1,12 @@
-import { InMemoryNotificationsRepository } from './../../../test/repositores/in-memory-notifications-repositories';
+import { InMemoryNotificationsRepository } from 'test/repositories/in-memory-notifications-repositories';
 import { SendNotification } from './send-notification';
 
 describe('Send notification', () => {
-  test('should be able to send notification', () => {
+  test('should be able to send notification', async () => {
     const notificationsRepository = new InMemoryNotificationsRepository();
     const sendNotification = new SendNotification(notificationsRepository);
 
-    const notification = sendNotification.execute({
+    const notification = await sendNotification.execute({
       recipientId: 'example-recipient-id',
       content: 'Você recebeu uma nova notificação!',
       category: 'general',

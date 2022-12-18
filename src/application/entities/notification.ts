@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import { Replace } from './../../helpers/Replacer';
+import { Replace } from 'src/helpers/Replacer';
 import { Content } from './content';
 
 export interface NotificationProps {
@@ -8,6 +8,7 @@ export interface NotificationProps {
   category: string;
   readAt?: Date | null;
   createdAt: Date;
+  canceledAt?: Date;
 }
 
 export class Notification {
@@ -66,5 +67,14 @@ export class Notification {
   // Created At
   get createdAt(): Date {
     return this.props.createdAt;
+  }
+
+  // CanceledAt
+  get canceledAt(): Date | null | undefined {
+    return this.props.canceledAt;
+  }
+
+  cancel() {
+    this.props.canceledAt = new Date();
   }
 }
